@@ -33,10 +33,10 @@ function getPasswordOptions() {
 
   // check booleans for questions
   if (
-    hasSpecialChar === false &&
-    hasNumericChar === false &&
-    hasLowerChar === false &&
-    hasUpperChar === false
+    !(hasSpecialChar &&
+    hasNumericChar &&
+    hasLowerChar &&
+    hasUpperChar)
     ) {
     alert('Must select at least one character type');
     return getPasswordOptions();
