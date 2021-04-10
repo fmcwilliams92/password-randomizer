@@ -12,11 +12,11 @@ function getPasswordOptions() {
   var passLength = parseInt(prompt("How long do you want your password to be?"));
   if (isNaN(passLength) === true) {
     alert("Must be a number!");
-    return;
+    return getPasswordOptions();
   }
   if (passLength < 8 || passLength > 128) {
     alert("Must be at least 8 characters, and less than 128");
-    return;
+    return getPasswordOptions();
   }
 
   // special char question
@@ -55,33 +55,33 @@ function getPasswordOptions() {
 
 // funtion that gets a random element from the array
 function getRandomArrayEl(arr) {
-  var randIndex = Math.floor(Math.random() * arr.passLength);
+  var randIndex = Math.floor(Math.random() * arr.length);
   var randEl = arr[randIndex];
   return randEl;
 };
 
 function generatePassword() {
-var options = getPasswordOptions()
-var result = []
-var possibleChars = []
-var guaranteedChar = []
+  var options = getPasswordOptions();
+  var result = [];
+  var possibleChars = [];
+  var guaranteedChar = [];
   if (options.hasSpecialChar) {
     possibleChars = possibleChars.concat(specialCharacters);
-    guaranteedChar.push(getRandomArrayEl(specialCharacters))
+    guaranteedChar.push(getRandomArrayEl(specialCharacters));
   }
   if (options.hasNumericChar) {
     possibleChars = possibleChars.concat(numericCharacters);
-    guaranteedChar.push(getRandomArrayEl(numericCharacters))
+    guaranteedChar.push(getRandomArrayEl(numericCharacters));
   }
   if (options.hasLowerChar) {
     possibleChars = possibleChars.concat(lowerCasedCharacters);
-    guaranteedChar.push(getRandomArrayEl(lowerCasedCharacters))
+    guaranteedChar.push(getRandomArrayEl(lowerCasedCharacters));
   }
   if (options.hasUpperChar) {
     possibleChars = possibleChars.concat(upperCasedCharacters);
-    guaranteedChar.push(getRandomArrayEl(upperCasedCharacters))
+    guaranteedChar.push(getRandomArrayEl(upperCasedCharacters));
   }
-  for (var i = 0; i < options.length; i++) {
+  for (var i = 0; i < options.passlength; i++) {
     var possibleChar = getRandomArrayEl(possibleChars);
     result.push(possibleChar);
   }
@@ -98,9 +98,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
