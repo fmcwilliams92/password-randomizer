@@ -39,7 +39,7 @@ function getPasswordOptions() {
     hasUpperChar === false
     ) {
     alert('Must select at least one character type');
-    return;
+    return getPasswordOptions();
   }
 
   // storing the user input into an object 
@@ -81,7 +81,7 @@ function generatePassword() {
     possibleChars = possibleChars.concat(upperCasedCharacters);
     guaranteedChar.push(getRandomArrayEl(upperCasedCharacters));
   }
-  for (var i = 0; i < options.passlength; i++) {
+  for (var i = 0; i < options.passLength; i++) {
     var possibleChar = getRandomArrayEl(possibleChars);
     result.push(possibleChar);
   }
